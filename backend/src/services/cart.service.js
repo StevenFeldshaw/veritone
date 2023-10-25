@@ -27,10 +27,17 @@ const update = async ({ id, name, quantity, description }) => (
   )
 )
 
+const deleteItemById = async ({ id }) => (
+  await Cart.destroy({
+    where: { id }
+  }) 
+)
+
 module.exports = {
   createItem,
   fetchAllItems,
   fetchItemById,
   fetchItemByName,
   update,
+  deleteItemById,
 }

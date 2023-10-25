@@ -4,6 +4,7 @@ const {
   fetchItemById,
   fetchItemByName,
   update,
+  deleteItemById,
 } = require('../services/cart.service')
 
 const addItem = async (req, res) => {
@@ -68,9 +69,24 @@ const updateItem = async (req, res) => {
   }
 }
 
+const deleteItem = async (req, res) => {
+  const { id } = req.params
+  try {
+    const item = await fetchItemById(id)
+    if (!item) return res.status(400).json({ message: 'Item does not exist' })
+    const response = await deleteItemById({ id })
+    if (response)
+      return res.status(200).json({ message: 'Item deleted successfully' })
+    else return res.status(404).json({ message: 'Item not deleted', response })
+  } catch (err) {
+    return res.status(500).json({ message: 'Internal server error', err })
+  }
+}
+
 module.exports = {
   addItem,
   getAllItems,
   getItemById,
   updateItem,
+  deleteItem,
 }
