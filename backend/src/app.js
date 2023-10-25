@@ -1,9 +1,11 @@
 const express = require('express')
 const cors = require('cors')
 const dotenv = require('dotenv')
+const swaggerUi = require('swagger-ui-express')
 
 const { connectToDatabase, sequelize } = require('./config/db')
 const { router } = require('./routes')
+const swaggerDocument = require('./swagger.json')
 
 dotenv.config()
 
@@ -25,6 +27,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/api', router)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 const PORT = process.env.PORT || 8000
 

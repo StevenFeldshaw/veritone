@@ -1,0 +1,221 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is Swagger Documentation of all endpoints",
+    "version": "1.0.0",
+    "title": "Veritone"
+  },
+  "schemes": ["http"],
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "paths": {
+    "/cart": {
+      "post": {
+        "summary": "Add an item to the cart",
+        "description": "Save the new item data of an item into the cart",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Item data object (You have to provide all information)",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cartBodyRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/ValidResponse"
+            }
+          },
+          "400": {
+            "description": "Item already exists",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get all items in the cart",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/ValidResponse"
+            }
+          },
+          "404": {
+            "description": "Items not found",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cart/{itemId}": {
+      "get": {
+        "summary": "Get details of a specific item in the cart",
+        "description": "Retrieve details of a specific item in the cart by providing the itemId in the URL",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "itemId of the item to be fetched",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/cartItemResponse"
+            }
+          },
+          "404": {
+            "description": "Item not found",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update the details of a specific item in the cart",
+        "description": "Update the details of a specific item in the cart by providing the itemId in the URL and request body with updated item details",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "itemId of the item to be updated",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/ValidResponse"
+            }
+          },
+          "404": {
+            "description": "Item not found",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove a specific item from the cart",
+        "description": "Remove a specific item from the cart by providing the itemId in the URL",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "itemId of the item to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/ValidResponse"
+            }
+          },
+          "404": {
+            "description": "Item not found",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "cartBodyRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "cartItemResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "ValidResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "InvalidResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
