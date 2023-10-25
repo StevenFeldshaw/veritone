@@ -3,6 +3,7 @@ const {
   fetchAllItems,
   fetchItemById,
   fetchItemByName,
+  update,
 } = require('../services/cart.service')
 
 const addItem = async (req, res) => {
@@ -52,8 +53,24 @@ const getItemById = async (req, res) => {
   }
 }
 
+const updateItem = async (req, res) => {
+  const { name, quantity, description } = req.body
+  const { id } = req.params
+  try {
+    const item = await fetchItemById(id)
+    if (!item) return res.status(400).json({ message: 'Item does not exist' })
+    const response = await update({ id, name, quantity, description })
+    if (response)
+      return res.status(200).json({ message: 'Item updated successfully' })
+    else return res.status(404).json({ message: 'Item not updated', response })
+  } catch (err) {
+    return res.status(500).json({ message: 'Internal server error', err })
+  }
+}
+
 module.exports = {
   addItem,
   getAllItems,
   getItemById,
+  updateItem,
 }

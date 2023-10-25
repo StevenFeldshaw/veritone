@@ -20,9 +20,17 @@ const fetchItemByName = async name => (
   })
 )
 
+const update = async ({ id, name, quantity, description }) => (
+  await Cart.update(
+    { name, quantity, description },
+    { where: { id } }
+  )
+)
+
 module.exports = {
   createItem,
   fetchAllItems,
   fetchItemById,
   fetchItemByName,
+  update,
 }

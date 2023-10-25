@@ -13,5 +13,6 @@ const cartRouter = express.Router()
 cartRouter.post('/', validateItem, addItem)
 cartRouter.get('/', getAllItems)
 cartRouter.get('/:id', validateItemId, getItemById)
+cartRouter.put('/:id', validateItem, updateItem)
 
 module.exports = { cartRouter }
