@@ -1,0 +1,18 @@
+2023-10-18 15:40:21.136 PKT [22498] LOG:  starting PostgreSQL 14.9 (Homebrew) on x86_64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.202), 64-bit
+2023-10-18 15:40:21.138 PKT [22498] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2023-10-18 15:40:21.138 PKT [22498] LOG:  listening on IPv6 address "::1", port 5432
+2023-10-18 15:40:21.139 PKT [22498] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2023-10-18 15:40:21.143 PKT [22499] LOG:  database system was shut down at 2023-10-18 15:39:22 PKT
+2023-10-18 15:40:21.151 PKT [22498] LOG:  database system is ready to accept connections
+2023-10-18 15:40:48.443 PKT [22528] FATAL:  role "postgres" does not exist
+2023-10-18 15:41:34.147 PKT [22553] FATAL:  role "postgres" does not exist
+2023-10-18 15:44:02.011 PKT [23374] FATAL:  role "postgres" does not exist
+2023-10-18 15:45:03.908 PKT [23437] FATAL:  role "postgres" does not exist
+2023-10-18 15:45:37.218 PKT [23461] FATAL:  role "postgres" does not exist
+2023-10-18 15:45:37.220 PKT [23462] FATAL:  role "postgres" does not exist
+2023-10-18 15:54:12.128 PKT [25428] FATAL:  database "dev" does not exist
+2023-10-18 15:54:38.655 PKT [25476] FATAL:  database "dev" does not exist
+2023-10-18 15:56:03.331 PKT [25538] FATAL:  database "mydb" does not exist
+2023-10-18 16:00:06.195 PKT [26246] FATAL:  role "newuser" does not exist
+2023-10-18 16:22:32.511 PKT [27946] FATAL:  database "dev" does not exist
+2023-10-18 16:26:38.786 PKT [28080] FATAL:  database "dev" does not exist
