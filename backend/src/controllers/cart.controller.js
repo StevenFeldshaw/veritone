@@ -1,5 +1,8 @@
 const {
   createItem,
+  fetchAllItems,
+  fetchItemById,
+  fetchItemByName,
 } = require('../services/cart.service')
 
 const addItem = async (req, res) => {
@@ -22,6 +25,35 @@ const addItem = async (req, res) => {
   }
 }
 
+const getAllItems = async (req, res) => {
+  try {
+    const response = await fetchAllItems()
+    return res
+      .status(200)
+      .json({ 
+        message: 'Items retrieved successfully!', 
+        response 
+      })
+  } catch (err) {
+    return res.status(500).json({
+      message: 'Internal server error', err
+    })
+  }
+}
+
+const getItemById = async (req, res) => {
+  const { id } = req.params
+  try {
+    const response = await fetchItemById(id)
+    if (response) return res.status(200).json(response)
+    else return res.status(404).json({ message: 'Item not found!', response })
+  } catch (err) {
+    return res.status(500).json({ message: 'Internal server error', err })
+  }
+}
+
 module.exports = {
   addItem,
+  getAllItems,
+  getItemById,
 }

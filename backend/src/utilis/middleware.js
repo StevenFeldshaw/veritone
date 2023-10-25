@@ -17,4 +17,19 @@ const validateItem = (req, res, next) => {
   }
 }
 
-module.exports = { validateItem }
+const validateItemId = (req, res, next) => {
+  try {
+    const cartSchema = Joi.object({
+      id: Joi.number().positive().required(),
+    })
+    const { error } = cartSchema.validate(req.params)
+
+    if (error) return res.status(400).send(error.details[0].message)
+
+    next()
+  } catch (err) {
+    return res.status(500).send('Internal server error.')
+  }
+}
+
+module.exports = { validateItem, validateItemId }
